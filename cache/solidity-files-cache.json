@@ -12577,6 +12577,43 @@
       "versionRequirement": ">=0.8.0",
       "artifacts": {}
     },
+    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/MerkleClaimERC721.t.sol": {
+      "lastModificationDate": 1649786088235,
+      "contentHash": "4f877555688ccf5c8e7c8d778e61f797",
+      "sourceName": "contracts/src/test/MerkleClaimERC721.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "contracts/src/MerkleClaimERC721.sol",
+        "contracts/src/test/utils/MerkleClaimERC721Test.sol",
+        "contracts/src/test/utils/MerkleClaimERC721User.sol"
+      ],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {}
+    },
     "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/utils/MerkleClaimERC20Test.sol": {
       "lastModificationDate": 1649693926375,
       "contentHash": "56838abd8c55f0570afe83ed2ff8853a",
@@ -12644,6 +12681,77 @@
       },
       "imports": [
         "contracts/src/MerkleClaimERC20.sol"
+      ],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {}
+    },
+    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/utils/MerkleClaimERC721Test.sol": {
+      "lastModificationDate": 1649788621264,
+      "contentHash": "c58128d660411ec8b90816641d6588db",
+      "sourceName": "contracts/src/test/utils/MerkleClaimERC721Test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "contracts/src/MerkleClaimERC721.sol",
+        "contracts/src/test/utils/MerkleClaimERC721User.sol"
+      ],
+      "versionRequirement": ">=0.8.0",
+      "artifacts": {}
+    },
+    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/utils/MerkleClaimERC721User.sol": {
+      "lastModificationDate": 1649785956906,
+      "contentHash": "f365727a6ea1649342943a5cbac620f6",
+      "sourceName": "contracts/src/test/utils/MerkleClaimERC721User.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "contracts/src/MerkleClaimERC721.sol"
       ],
       "versionRequirement": ">=0.8.0",
       "artifacts": {}

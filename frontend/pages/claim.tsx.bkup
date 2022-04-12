@@ -20,8 +20,6 @@ export default function Claim() {
     alreadyClaimed: boolean;
     claimAirdrop: Function;
   } = token.useContainer();
-  console.log("dataLoading,numTokens,alreadyClaimed,claimAirdrop",dataLoading,numTokens,alreadyClaimed,claimAirdrop);
-  
   // Local button loading
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
@@ -61,14 +59,14 @@ export default function Claim() {
           <div className={styles.card}>
             <h1>Already claimed.</h1>
             <p>
-              Your address ({address}) has already claimed Web3Bridge Certificate.
+              Your address ({address}) has already claimed {numTokens} tokens.
             </p>
           </div>
         ) : (
           // Claim your airdrop
           <div className={styles.card}>
             <h1>Claim your airdrop.</h1>
-            <p>Your address qualifies for Web3Bridge Certificate.</p>
+            <p>Your address qualifies for {numTokens} tokens.</p>
             <button onClick={claimWithLoading} disabled={buttonLoading}>
               {buttonLoading ? "Claiming Airdrop..." : "Claim Airdrop"}
             </button>

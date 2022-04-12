@@ -29,7 +29,7 @@ contract MerkleClaimERC721Test is DSTest {
       "My Token", 
       "MT", 
       // Merkle root containing ALICE with 100e18 tokens but no BOB
-      0xd0aa6a4e5b4e13462921d7518eebdb7b297a7877d6cfe078b0c318827392fb55
+      0x5c3367e95591e7841be6b927bc0bd8a05ea58107336f32be0da1143b45506198
     );
 
     // Setup airdrop users

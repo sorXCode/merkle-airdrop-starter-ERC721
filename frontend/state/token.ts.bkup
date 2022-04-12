@@ -12,11 +12,11 @@ import { createContainer } from "unstated-next"; // State management
  * @param {string} value of airdrop tokens to claimee
  * @returns {Buffer} Merkle Tree node
  */
-function generateLeaf(address: string): Buffer {
+function generateLeaf(address: string, value: string): Buffer {
   return Buffer.from(
     // Hash in appropriate Merkle format
     ethers.utils
-      .solidityKeccak256(["address"], [address])
+      .solidityKeccak256(["address", "uint256"], [address, value])
       .slice(2),
     "hex"
   );
@@ -25,9 +25,10 @@ function generateLeaf(address: string): Buffer {
 // Setup merkle tree
 const merkleTree = new MerkleTree(
   // Generate leafs
-  config.airdrop.map((address) =>
+  Object.entries(config.airdrop).map(([address, tokens]) =>
     generateLeaf(
       ethers.utils.getAddress(address),
+      ethers.utils.parseUnits(tokens.toString(), config.decimals).toString()
     )
   ),
   // Hashing function
@@ -62,7 +63,7 @@ function useToken() {
         // hasClaimed mapping
         "function hasClaimed(address) public view returns (bool)",
         // Claim function
-        "function claim(address to, string memory _tokenURI, bytes32[] calldata proof) external",
+        "function claim(address to, uint256 amount, bytes32[] calldata proof) external",
       ],
       // Get signer from authed provider
       provider?.getSigner()
@@ -72,14 +73,15 @@ function useToken() {
   /**
    * Collects number of tokens claimable by a user from Merkle tree
    * @param {string} address to check
+   * @returns {number} of tokens claimable
    */
   const getAirdropAmount = (address: string): number => {
     // If address is in airdrop. convert address to correct checksum
     address = ethers.utils.getAddress(address)
     
-    if (config.airdrop.includes(address)) {
+    if (address in config.airdrop) {
       // Return number of tokens available
-      return 1;
+      return config.airdrop[address];
     }
 
     // Else, return 0 tokens
@@ -109,16 +111,18 @@ function useToken() {
     // Get properly formatted address
     const formattedAddress: string = ethers.utils.getAddress(address);
     // Get tokens for address
-    const _tokenURI: string = "ipfs://QmdmMrfjEmEHL5mXzj5zeBXxMXTe8TXiwjMHRZRLxLaW4S";
+    const numTokens: string = ethers.utils
+      .parseUnits(config.airdrop[ethers.utils.getAddress(address)].toString(), config.decimals)
+      .toString();
 
     // Generate hashed leaf from address
-    const leaf: Buffer = generateLeaf(formattedAddress);
+    const leaf: Buffer = generateLeaf(formattedAddress, numTokens);
     // Generate airdrop proof
     const proof: string[] = merkleTree.getHexProof(leaf);
 
     // Try to claim airdrop and refresh sync status
     try {
-      const tx = await token.claim(formattedAddress, _tokenURI, proof);
+      const tx = await token.claim(formattedAddress, numTokens, proof);
       await tx.wait(1);
       await syncStatus();
     } catch (e) {
@@ -153,7 +157,6 @@ function useToken() {
   // On load:
   useEffect(() => {
     syncStatus();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   return {
