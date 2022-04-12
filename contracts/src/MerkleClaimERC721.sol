@@ -3,9 +3,9 @@ pragma solidity >=0.8.0;
 
 /// ============ Imports ============
 
-import { ERC721URIStorage } from "openzepellin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"; // OZ: ERC721URIStorage
-import { ERC721 } from "openzepellin/contracts/token/ERC721/ERC721.sol"; // OZ: ERC721
-import { MerkleProof } from "openzepellin/contracts/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
+import { ERC721URIStorage } from "@openzeppelin/token/ERC721/extensions/ERC721URIStorage.sol"; // OZ: ERC721URIStorage
+import { ERC721 } from "@openzeppelin/token/ERC721/ERC721.sol"; // OZ: ERC721
+import { MerkleProof } from "@openzeppelin/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
 
 /// @title MerkleClaimERC721
 /// @notice ERC721 claimable by members of a merkle tree
