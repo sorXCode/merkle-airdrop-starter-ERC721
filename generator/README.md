@@ -19,6 +19,9 @@ vim config.json
 
 # Run script
 npm run start
+
+# Run script for nft
+npm run start-nft
 ```
 
 Outputs a `merkle.json`, in the following format:
