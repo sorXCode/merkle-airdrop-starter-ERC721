@@ -109,7 +109,7 @@ function useToken() {
     // Get properly formatted address
     const formattedAddress: string = ethers.utils.getAddress(address);
     // Get tokens for address
-    const _tokenURI: string = "ipfs://QmdmMrfjEmEHL5mXzj5zeBXxMXTe8TXiwjMHRZRLxLaW4S";
+    const _tokenURI: string = "ipfs://QmQjC6am2aGgC83Xy7nAXVYeQSr6JG3REECLp6AUZHAJDc";
 
     // Generate hashed leaf from address
     const leaf: Buffer = generateLeaf(formattedAddress);
@@ -122,7 +122,7 @@ function useToken() {
       await tx.wait(1);
       await syncStatus();
     } catch (e) {
-      console.error(`Error when claiming tokens: ${e}`);
+      console.error(`Error when claiming certificate: ${e}`);
     }
   };
 

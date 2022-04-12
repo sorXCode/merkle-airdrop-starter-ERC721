@@ -45,10 +45,10 @@ export default function Home() {
         {/* Claim button */}
         {!address ? (
           // If not authenticated, disabled
-          <button disabled>Connect Wallet to Claim Tokens</button>
+          <button disabled>Connect Wallet to Claim Certificate</button>
         ) : (
           // Else, reroute to /claim
-          <button onClick={() => push("/claim")}>Claim Tokens</button>
+          <button onClick={() => push("/claim")}>Claim Certificate</button>
         )}
       </div>
     </Layout>
