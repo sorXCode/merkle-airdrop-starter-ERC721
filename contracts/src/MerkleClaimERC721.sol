@@ -6,19 +6,19 @@ pragma solidity >=0.8.0;
 import { ERC721URIStorage } from "@openzeppelin/token/ERC721/extensions/ERC721URIStorage.sol"; // OZ: ERC721URIStorage
 import { ERC721 } from "@openzeppelin/token/ERC721/ERC721.sol"; // OZ: ERC721
 import { MerkleProof } from "@openzeppelin/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
+import { Ownable } from "@openzeppelin/access/Ownable.sol"; // OZ: MerkleProof
 
 /// @title MerkleClaimERC721
 /// @notice ERC721 claimable by members of a merkle tree
 /// @author web3bridge CohortVI <contact@web3bridge.com>
 /// @dev Solmate ERC721 includes unused _burn logic that can be removed to optimize deployment cost
-contract MerkleClaimERC721 is ERC721URIStorage {
-
-  /// ============ Immutable storage ============
-
-  /// @notice ERC721-claimee inclusion root
-  bytes32 public immutable merkleRoot;
+contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
 
   /// ============ Mutable storage ============
+
+  /// @notice ERC721-claimee inclusion root
+  bytes32 public  merkleRoot;
+
   /// token id tracker
   uint48 id;
   /// @notice Mapping of addresses who have claimed tokens
@@ -54,7 +54,18 @@ contract MerkleClaimERC721 is ERC721URIStorage {
   /// @param id of token claimed
   event Claim(address indexed to, uint256 id);
 
+  /// @notice emiited after successful merkleRoot change
+  /// @param _newRoot new merkleRoot
+  event UpdatedRoot(bytes32 _newRoot);
+
   /// ============ Functions ============
+
+  /// @notice Updates the merkleRoot with the given new root
+  /// @param _newRoot new merkleRoot to work with
+  function updateMerkleRoot(bytes32 _newRoot) external onlyOwner {
+    merkleRoot = _newRoot;
+    emit UpdatedRoot(_newRoot);
+  }
 
   /// @notice Allows claiming tokens if address is part of merkle tree
   /// @param to address of claimee
@@ -82,5 +93,5 @@ contract MerkleClaimERC721 is ERC721URIStorage {
   }
 }
 // Deployer: 0x4ce64d91e25359443f6d10fe2b7c5e4118114e7a
-// Deployed to: 0x0d2bc54cca97b701fa152b198eb8930cc078a71f
-// Transaction hash: 0x492020b52ad571bf5966a886297293d82a2f0a0d7c0334f2efd54892a53cc868
+// Deployed to: 0x67eab3b2be77d8a071ac3e758049ca74106036be
+// Transaction hash: 0xa128e47c9864995b4ce0e7d87b0326763b2165c9071da4d8d40279fa597bb86a
