@@ -14,20 +14,22 @@ contract MerkleClaimERC721User {
 
   /// @dev MerkleClaimERC721 contract
   MerkleClaimERC721 immutable internal TOKEN;
+  address immutable public ADDRESS;
 
   /// ============ Constructor ============
 
   /// @notice Creates a new MerkleClaimERC721User
   /// @param _TOKEN MerkleClaimERC721 contract
-  constructor(MerkleClaimERC721 _TOKEN) {
+  constructor(MerkleClaimERC721 _TOKEN, address _ADDRESS) {
     TOKEN = _TOKEN;
+    ADDRESS = _ADDRESS;
   }
 
   /// ============ Helper functions ============
 
   /// @notice Returns users' token balance
   function tokenBalance() public view returns (uint256) {
-    return TOKEN.balanceOf(address(this));
+    return TOKEN.balanceOf(ADDRESS);
   }
 
   /// ============ Inherited functionality ============

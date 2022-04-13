@@ -4,6 +4,7 @@
 # Contracts
 contracts/cache
 contracts/out
+*verify.sh
 
 # Generator
 generator/node_modules
