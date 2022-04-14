@@ -17,7 +17,7 @@ interface CheatCodes {
 /// @author Anish Agnihotri <contact@anishagnihotri.com>
 contract Tests is MerkleClaimERC721Test {
     
-    CheatCodes cheat = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
+    CheatCodes cheat = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D); //foundry deployed cheatcodes address
     
     // Setup correct proof for Alice
     bytes32[5] aliceProof = [
