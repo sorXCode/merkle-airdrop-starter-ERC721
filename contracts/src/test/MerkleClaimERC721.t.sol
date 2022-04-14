@@ -148,7 +148,7 @@ contract Tests is MerkleClaimERC721Test {
     TOKEN.transferOwnership(address(0));
   }
 
-   function testNotOwnerTransferOwnershipFail() public {
+   function testCannotNotOwnerTransferOwnership() public {
       cheat.prank(address(10));
        TOKEN = new MerkleClaimERC721(
       "My Token", 
