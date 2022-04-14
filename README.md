@@ -41,7 +41,7 @@ Feel free to check the [issues page](issues/).
 Give a ⭐️ if you like this project!
 
 ## Acknowledgment
-- We acknowledge the creators of the [Merkle Airdrop Starter](https://github.com/sorXCode/merkle-airdrop-starter-ERC721) and [Web3Bridge](https://www.web3bridge.com/) for project instructions.
+- We acknowledge the creators of the [Merkle Airdrop Starter](https://github.com/Anish-Agnihotri/merkle-airdrop-starter) and [Web3Bridge](https://www.web3bridge.com/) for project instructions.
 
 
 ## Similar work and credits
