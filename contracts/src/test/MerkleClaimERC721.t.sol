@@ -4,11 +4,21 @@ pragma solidity >=0.8.0;
 /// ============ Imports ============
 
 import { MerkleClaimERC721Test } from "./utils/MerkleClaimERC721Test.sol"; // Test scaffolding
+import { MerkleClaimERC721 } from "../MerkleClaimERC721.sol"; // MerkleClaimERC721
 
+interface CheatCodes {
+    function prank(address) external;
+    function stopPrank() external;
+    function expectRevert(bytes calldata msg) external;
+
+}
 /// @title Tests
 /// @notice MerkleClaimERC721 tests
 /// @author Anish Agnihotri <contact@anishagnihotri.com>
 contract Tests is MerkleClaimERC721Test {
+    
+    CheatCodes cheat = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
+    
     // Setup correct proof for Alice
     bytes32[5] aliceProof = [
       bytes32(0x0b3da53306c1495659b5cc9f744ea981c2a3f127b250e5c8caedfaa97c0e676b),
@@ -126,4 +136,29 @@ contract Tests is MerkleClaimERC721Test {
     // Assert Alice balance before + 100 tokens = after balance
     assertEq(alicePostBalance, alicePreBalance + 1);
   }
+
+  function testTransferOwnershipToAddressZeroFail() public {
+      TOKEN = new MerkleClaimERC721(
+      "My Token", 
+      "MT", 
+      // Merkle root containing ALICE but no BOB
+      0xa21be505af5f5455fad4bcb3d54ccc03f269c5e06945f1dbf6c96dfcb99fcbd0
+    );
+    cheat.expectRevert(bytes("Ownable: new owner is the zero address"));
+    TOKEN.transferOwnership(address(0));
+  }
+
+   function testNotOwnerTransferOwnershipFail() public {
+      cheat.prank(address(10));
+       TOKEN = new MerkleClaimERC721(
+      "My Token", 
+      "MT", 
+      // Merkle root containing ALICE but no BOB
+      0xa21be505af5f5455fad4bcb3d54ccc03f269c5e06945f1dbf6c96dfcb99fcbd0
+    );
+    cheat.stopPrank();
+    cheat.expectRevert(bytes("Ownable: caller is not the owner"));
+    TOKEN.transferOwnership(address(2));
+   }
+
 }
