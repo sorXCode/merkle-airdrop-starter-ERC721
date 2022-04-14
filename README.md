@@ -16,7 +16,7 @@ A Web3Bridge certificate contract that is an ERC721 token airdrop to a Merkle tr
 Steps:
 
 1. Generate Merkle tree of recipients by following README in [generator/](https://github.com/Anish-Agnihotri/merkle-airdrop-starter/tree/master/generator)
-2. Setup and deploy MerkleClaimERC721 contracts by following README in [contracts/](https://github.com/Anish-Agnihotri/merkle-airdrop-starter/tree/master/contracts)
+2. Setup and deploy the MerkleClaimERC721 contract by following README in [contracts/](https://github.com/sorxcode/merkle-airdrop-starter-ERC721/tree/master/contracts)
 3. Setup and deploy front-end by following README in [frontend/](https://github.com/Anish-Agnihotri/merkle-airdrop-starter/tree/master/frontend)
 
 ### Contributors
