@@ -25,7 +25,7 @@ Steps:
 - Fork the repository
 - Git clone https://github.com/your-username/merkle-airdrop-starter-ERC721
 - git checkout -b branch name
-- git remote add upstream https://github.com/jebitok-dev/merkle-airdrop-starter-ERC721
+- git remote add upstream https://github.com/sorxcode/merkle-airdrop-starter-ERC721
 - git pull upstream master
 - git commit -m "commit message"
 - git push -u origin HEAD
