@@ -137,7 +137,7 @@ contract Tests is MerkleClaimERC721Test {
     assertEq(alicePostBalance, alicePreBalance + 1);
   }
 
-  function testCannotNotOwnerTransferToAddressZero() public {
+   function testCannotTransferOwnershipToAddressZero() public {
       TOKEN = new MerkleClaimERC721(
       "My Token", 
       "MT", 
@@ -160,5 +160,7 @@ contract Tests is MerkleClaimERC721Test {
     cheat.expectRevert(bytes("Ownable: caller is not the owner"));
     TOKEN.transferOwnership(address(2));
    }
+
+
 
 }
