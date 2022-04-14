@@ -137,7 +137,7 @@ contract Tests is MerkleClaimERC721Test {
     assertEq(alicePostBalance, alicePreBalance + 1);
   }
 
-  function testTransferOwnershipToAddressZeroFail() public {
+  function testCannotTransferOwnershipToAddressZero() public {
       TOKEN = new MerkleClaimERC721(
       "My Token", 
       "MT", 
