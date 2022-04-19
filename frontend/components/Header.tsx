@@ -52,7 +52,13 @@ export default function Header() {
       <div className={styles.header__logo}>
         <Link href="/">
           <a>
-            <Image src="/logo.png" alt="Logo" width={58} height={58} priority />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={100}
+              height={70}
+              priority
+            />
           </a>
         </Link>
       </div>

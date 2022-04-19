@@ -4,6 +4,7 @@
   margin: 0px auto 50px auto;
   text-align: center;
   padding: 1rem;
+  overflow: hidden;
 
   // Logo
   > div {
@@ -24,11 +25,12 @@
 
   // Header
   > h1 {
-    font-size: 44px;
+    // border: 2px solid red;
+    font-size: 2rem;
     font-weight: bold;
     line-height: 1.2;
-    margin: 1rem;
-    color: #107cf1;
+    margin-bottom: 3.5rem;
+    color: hsl(4, 100%, 49%);
   }
 
   > p {
@@ -43,15 +45,18 @@
     font-weight: 500;
     border-radius: 12px;
     padding: 1rem;
-    margin: 0px 1rem;
     font-size: 16px;
     border: 1px solid rgb(255, 255, 255);
-    color: rgb(0, 93, 194);
-    background-color: rgb(186, 206, 255);
+    color: rgb(239, 236, 233);
+    background-color: rgb(23, 5, 2);
+  }
+  > button:hover {
+    background-color: rgb(239, 236, 233);
+    color: rgb(23, 5, 2);
 
     &:disabled {
       opacity: 0.5;
-      border-color: rgb(255, 255, 255);
+      border: 2px solid rgb(23, 5, 2);
       cursor: not-allowed;
     }
   }

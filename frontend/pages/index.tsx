@@ -21,11 +21,11 @@ export default function Home() {
       <div className={styles.home}>
         {/* Project logo */}
         <div>
-          <Image src="/logo.png" alt="Logo" width={250} height={250} priority />
+          <Image src="/logo.png" alt="Logo" width={350} height={150} priority />
         </div>
 
         {/* Project introduction article, if it exists */}
-        {process.env.NEXT_PUBLIC_ARTICLE ? (
+        {/* {process.env.NEXT_PUBLIC_ARTICLE ? (
           <a
             href={process.env.NEXT_PUBLIC_ARTICLE}
             target="_blank"
@@ -34,7 +34,7 @@ export default function Home() {
             Introducing {tokenName}{" "}
             <Image src="/icons/arrow.svg" alt="Arrow" height={12} width={12} />
           </a>
-        ) : null}
+        ) : null} */}
 
         {/* Project heading */}
         <h1>{heading}</h1>

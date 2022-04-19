@@ -22,7 +22,7 @@
   > h1 {
     margin: 0px;
     line-height: 1.2;
-    font-size: 25px;
+    font-size: 2rem;
   }
 
   // Description
@@ -40,11 +40,16 @@
     padding: 1rem;
     font-size: 16px;
     border: 1px solid rgb(255, 255, 255);
-    color: rgb(0, 93, 194);
-    background-color: rgb(186, 206, 255);
+    // color: rgb(0, 93, 194);
+    // background-color: rgb(186, 206, 255);
+    color: rgb(255, 255, 255);
+    background-color: rgb(23, 5, 2);
 
     &:hover {
-      border-color: rgb(201, 201, 201);
+      border: 2px solid rgb(23, 5, 2);
+      // border-color: rgb(201, 201, 201);
+      background-color: rgb(255, 255, 255);
+      color: rgb(23, 5, 2);
     }
 
     // Disable border color change on disabled hover
