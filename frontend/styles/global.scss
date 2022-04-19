@@ -1,16 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100;200;300;400;500&display=swap");
 html,
 body {
   // Fix spacing
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
   // Font
   font-feature-settings: "ss01";
   text-rendering: optimizeLegibility;
-  font-family: "Inter", sans-serif;
+  font-family: "Anek Devanagari", sans-serif;
+  letter-spacing: 0.15rem;
 
   // Background
-  background-color: rgb(247, 248, 250);
+  background: linear-gradient(
+      to top right,
+      rgba(250, 228, 230, 0.25),
+      rgba(4, 4, 4, 0.25),
+      rgba(111, 6, 6, 0.25)
+    ),
+    url("/frontend/public/images/w3bridge-bg.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-height: 100vh;
 }
 
 // Override default link styles
@@ -24,6 +37,7 @@ button,
 input {
   font-feature-settings: "ss01";
   text-rendering: optimizeLegibility;
-  font-family: "Inter", sans-serif;
+  font-family: "Anek Devanagari", sans-serif;
+  letter-spacing: 0.15rem;
   cursor: pointer;
 }

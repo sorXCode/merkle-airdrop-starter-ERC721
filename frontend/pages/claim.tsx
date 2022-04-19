@@ -20,8 +20,7 @@ export default function Claim() {
     alreadyClaimed: boolean;
     claimAirdrop: Function;
   } = token.useContainer();
-  console.log("dataLoading,numTokens,alreadyClaimed,claimAirdrop",dataLoading,numTokens,alreadyClaimed,claimAirdrop);
-  
+
   // Local button loading
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
@@ -41,36 +40,38 @@ export default function Claim() {
           // Not authenticated
           <div className={styles.card}>
             <h1>You are not authenticated.</h1>
-            <p>Please connect with your wallet to check your airdrop.</p>
+            <p>Please connect your wallet to claim your certificate.</p>
             <button onClick={() => unlock()}>Connect Wallet</button>
           </div>
         ) : dataLoading ? (
           // Loading details about address
           <div className={styles.card}>
-            <h1>Loading airdrop details...</h1>
+            <h1>Loading details...</h1>
             <p>Please hold while we collect details about your address.</p>
           </div>
         ) : numTokens == 0 ? (
           // Not part of airdrop
           <div className={styles.card}>
             <h1>You do not qualify.</h1>
-            <p>Unfortunately, your address does not qualify for the airdrop.</p>
+            <p>Sorry, your address does not qualify to claim a certificate.</p>
           </div>
         ) : alreadyClaimed ? (
           // Already claimed airdrop
           <div className={styles.card}>
-            <h1>Already claimed.</h1>
+            <h1>Congratulations!</h1>
             <p>
-              Your address ({address}) has already claimed Web3Bridge Certificate.
+              Your address ({address}) <br /> has successfully claimed a
+              Web3Bridge Certificate.
             </p>
           </div>
         ) : (
           // Claim your airdrop
           <div className={styles.card}>
-            <h1>Claim your airdrop.</h1>
-            <p>Your address qualifies for Web3Bridge Certificate.</p>
+            <h1>Claim your certificate.</h1>
+
+            <p>Your address qualifies for a Web3Bridge Certificate.</p>
             <button onClick={claimWithLoading} disabled={buttonLoading}>
-              {buttonLoading ? "Claiming Airdrop..." : "Claim Airdrop"}
+              {buttonLoading ? "Claiming Certificate..." : "Claim Certificate"}
             </button>
           </div>
         )}
