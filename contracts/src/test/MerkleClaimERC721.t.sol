@@ -8,6 +8,12 @@ import { MerkleClaimERC721Test } from "./utils/MerkleClaimERC721Test.sol"; // Te
 /// @title Tests
 /// @notice MerkleClaimERC721 tests
 /// @author Anish Agnihotri <contact@anishagnihotri.com>
+
+interface ICheatcode {
+  function expectRevert(bytes calldata msg) external;
+  function prank(address) external;
+}
+
 contract Tests is MerkleClaimERC721Test {
     // Setup correct proof for Alice
     bytes32[5] aliceProof = [
@@ -125,5 +131,18 @@ contract Tests is MerkleClaimERC721Test {
 
     // Assert Alice balance before + 100 tokens = after balance
     assertEq(alicePostBalance, alicePreBalance + 1);
+  }
+
+  function testOwnerChangeRoot() public {
+    address owner = 0x00a329c0648769A73afAc7F9381E08FB43dBEA72; // Foundry default address on the EVM
+    ICheatcode c = ICheatcode(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D); // Foundry Address to access the depoyed cheatcode
+    
+    assertEq(msg.sender,owner);
+    TOKEN.updateMerkleRoot(0xa21be505af5f5455fad4bcb3d54ccc03f269c5e06945f1dbf6c96dfcb99fcbd0);
+
+    c.prank(address(2));
+    bytes memory message = "Ownable: caller is not the owner";
+    c.expectRevert(message);
+    TOKEN.updateMerkleRoot(0xa21be505af5f5455fad4bcb3d54ccc03f269c5e06945f1dbf6c96dfcb99fcbd0);
   }
 }

@@ -1,9 +1,11 @@
-# MerkleClaimERC20
+# Web3Bridge MerkleClaimERC721 Contract
 
-ERC20 token claimable by members of a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree). Useful for conducting Airdrops. Utilizes [Solmate ERC20](https://github.com/Rari-Capital/solmate/blob/main/src/tokens/ERC20.sol) for modern ERC20 token implementation.
+MerkleClaimERC721 contract that utilizes [OpenZeppelin's ERC721URIStorage, ERC721, MerkleProof and Ownable](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721) for modern ERC721 token implementation. It defines `claim`, `hasClaimed`, `updateMerkleRoot`. It is claimable by members of a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree). Useful for conducting Web3Bridge Certificate Airdrops. 
 
 ## Test
+To run the test, run
 
+forge test
 Tests use [Foundry: Forge](https://github.com/gakonst/foundry).
 
 Install Foundry using the installation steps in the README of the linked repo.

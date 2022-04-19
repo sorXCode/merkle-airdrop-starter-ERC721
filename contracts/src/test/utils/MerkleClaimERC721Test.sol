@@ -35,5 +35,5 @@ contract MerkleClaimERC721Test is DSTest {
     // Setup airdrop users
     ALICE = new MerkleClaimERC721User(TOKEN, 0xe66904a5318f27880bf1d20D77Ffa8FBdaC5E5E7); // 0xe66904a5318f27880bf1d20D77Ffa8FBdaC5E5E7
     BOB = new MerkleClaimERC721User(TOKEN, 0x71c7E43E96C1e7bBc4D8eB50e165deeE267770D2); // 0x71c7E43E96C1e7bBc4D8eB50e165deeE267770D2
-  }
+  }  
 }
