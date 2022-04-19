@@ -12,7 +12,7 @@ import type {
 import type { Web3Provider } from "@ethersproject/providers";
 
 // Network
-const networkId = process.env.NEXT_PUBLIC_RPC_NETWORK
+export const networkId = process.env.NEXT_PUBLIC_RPC_NETWORK
   ? // Use network
     Number(process.env.NEXT_PUBLIC_RPC_NETWORK)
   : // Else, default to Rinkeby
@@ -40,7 +40,6 @@ function useEth() {
   const [address, setAddress] = useState<string | null>(null); // User address
   const [onboard, setOnboard] = useState<API | null>(null); // Onboard provider
   const [provider, setProvider] = useState<Web3Provider | null>(null); // Ethers provider
-
   /**
    * Unlock wallet, store ethers provider and address
    */

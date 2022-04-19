@@ -5,7 +5,7 @@ import keccak256 from "keccak256"; // Keccak256 hashing
 import MerkleTree from "merkletreejs"; // MerkleTree.js
 import { useEffect, useState } from "react"; // React
 import { createContainer } from "unstated-next"; // State management
-
+import { networkId } from "./eth";
 /**
  * Generate Merkle Tree leaf from address and value
  * @param {string} address of airdrop claimee
@@ -49,7 +49,14 @@ function useToken() {
   const [dataLoading, setDataLoading] = useState<boolean>(true); // Data retrieval status
   const [numTokens, setNumTokens] = useState<number>(0); // Number of claimable tokens
   const [alreadyClaimed, setAlreadyClaimed] = useState<boolean>(false); // Claim status
+  const [isValidNetwork, setisValidNetwork] = useState<boolean>(false);
 
+  useEffect(() => {
+    // @ts-ignore
+    window.ethereum.on('chainChanged', (chainId: string) => {
+      setisValidNetwork(parseInt(chainId) === networkId);
+    });
+  }, []);
   /**
    * Get contract
    * @returns {ethers.Contract} signer-initialized contract
@@ -76,7 +83,7 @@ function useToken() {
   const getAirdropAmount = (address: string): number => {
     // If address is in airdrop. convert address to correct checksum
     address = ethers.utils.getAddress(address)
-    
+
     if (config.airdrop.includes(address)) {
       // Return number of tokens available
       return 1;
@@ -91,38 +98,46 @@ function useToken() {
    * @param {string} address to check
    * @returns {Promise<boolean>} true if already claimed, false if available
    */
-  const getClaimedStatus = async (address: string): Promise<boolean> => {
-    // Collect token contract
-    const token: ethers.Contract = getContract();
-    // Return claimed status
-    return await token.hasClaimed(address);
+  const getClaimedStatus = async (address: string): Promise<boolean | void> => {
+    if (isValidNetwork){
+      // Collect token contract
+      const token: ethers.Contract = getContract();
+      // Return claimed status
+      return await token.hasClaimed(address);
+    }
+    showNetworkErrorAlert();
   };
 
   const claimAirdrop = async (): Promise<void> => {
-    // If not authenticated throw
-    if (!address) {
-      throw new Error("Not Authenticated");
-    }
+    if (isValidNetwork){
 
-    // Collect token contract
-    const token: ethers.Contract = getContract();
-    // Get properly formatted address
-    const formattedAddress: string = ethers.utils.getAddress(address);
-    // Get tokens for address
-    const _tokenURI: string = "ipfs://QmQjC6am2aGgC83Xy7nAXVYeQSr6JG3REECLp6AUZHAJDc";
-
-    // Generate hashed leaf from address
-    const leaf: Buffer = generateLeaf(formattedAddress);
-    // Generate airdrop proof
-    const proof: string[] = merkleTree.getHexProof(leaf);
-
-    // Try to claim airdrop and refresh sync status
-    try {
-      const tx = await token.claim(formattedAddress, _tokenURI, proof);
-      await tx.wait(1);
-      await syncStatus();
-    } catch (e) {
-      console.error(`Error when claiming certificate: ${e}`);
+      // If not authenticated throw
+      if (!address) {
+        throw new Error("Not Authenticated");
+      }
+      
+      // Collect token contract
+      const token: ethers.Contract = getContract();
+      // Get properly formatted address
+      const formattedAddress: string = ethers.utils.getAddress(address);
+      // Get tokens for address
+      const _tokenURI: string = "ipfs://QmQjC6am2aGgC83Xy7nAXVYeQSr6JG3REECLp6AUZHAJDc";
+      
+      // Generate hashed leaf from address
+      const leaf: Buffer = generateLeaf(formattedAddress);
+      // Generate airdrop proof
+      const proof: string[] = merkleTree.getHexProof(leaf);
+      
+      // Try to claim airdrop and refresh sync status
+      try {
+        const tx = await token.claim(formattedAddress, _tokenURI, proof);
+        await tx.wait(1);
+        await syncStatus();
+      } catch (e) {
+        console.error(`Error when claiming certificate: ${e}`);
+      }
+    }else{
+      showNetworkErrorAlert()
     }
   };
 
@@ -153,7 +168,7 @@ function useToken() {
   // On load:
   useEffect(() => {
     syncStatus();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   return {
@@ -166,3 +181,7 @@ function useToken() {
 
 // Create unstated-next container
 export const token = createContainer(useToken);
+function showNetworkErrorAlert() {
+  alert(`Invalid Network, please connect to ${process.env.NEXT_PUBLIC_RPC_NETWORK_NAME}`);
+}
+
