@@ -1,6 +1,6 @@
 .home {
   // Sizing
-  max-width: 500px;
+  max-width: 100%;
   margin: 0px auto 50px auto;
   text-align: center;
   padding: 1rem;
@@ -26,19 +26,21 @@
   // Header
   > h1 {
     // border: 2px solid red;
-    font-size: 2rem;
+    font-size: 3.5rem;
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 3.5rem;
-    color: hsl(4, 100%, 49%);
+    background: linear-gradient(135deg, hsl(4, 100%, 49%) 55%, rgb(44, 15, 1));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  > p {
-    font-size: 18px;
-    color: rgb(113, 113, 113);
-    line-height: 1.5;
-    margin: 1rem;
-  }
+  // > p {
+  //   font-size: 18px;
+  //   color: rgb(113, 113, 113);
+  //   line-height: 1.5;
+  //   margin: 1rem;
+  // }
 
   > button {
     min-width: 150px;
@@ -47,12 +49,16 @@
     padding: 1rem;
     font-size: 16px;
     border: 1px solid rgb(255, 255, 255);
-    color: rgb(239, 236, 233);
+    color: rgb(180, 180, 180);
     background-color: rgb(23, 5, 2);
+    margin: auto;
   }
   > button:hover {
-    background-color: rgb(239, 236, 233);
-    color: rgb(23, 5, 2);
+    color: rgb(239, 236, 233);
+    background-color: rgb(23, 5, 2);
+    box-shadow: 2px 2px 4px rgba(200, 200, 200, 0.25);
+    transform: scale(1.01);
+    transition: all 0.5s;
 
     &:disabled {
       opacity: 0.5;

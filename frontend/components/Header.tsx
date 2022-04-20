@@ -53,10 +53,10 @@ export default function Header() {
         <Link href="/">
           <a>
             <Image
-              src="/logo.png"
+              src="/croppedLogo.png"
               alt="Logo"
-              width={100}
-              height={70}
+              width={50}
+              height={60}
               priority
             />
           </a>
@@ -76,7 +76,10 @@ export default function Header() {
         </button>
 
         {/* Actions button */}
-        <button onClick={() => setMenuOpen((previous) => !previous)}>
+        <button
+          className="hamburger__menu"
+          onClick={() => setMenuOpen((previous) => !previous)}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={threeDotsImage} alt="settings" />
         </button>

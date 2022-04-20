@@ -36,10 +36,17 @@
   // Universal hover colors
   > button {
     &:hover {
-      background-color: rgb(255, 255, 255) !important;
-      color: rgb(23, 5, 2) !important;
-      border-color: rgb(23, 5, 2) !important;
+      color: rgb(255, 255, 255) !important;
+      background-color: rgb(23, 5, 2);
+      border-color: rgb(23, 5, 2);
+      transform: scale(1.01);
+      transition: all 0.5s;
     }
+  }
+  button:hover:nth-of-type(2) {
+    background: rgb(92, 91, 91);
+    transform: scale(1.05);
+    transition: all 0.5s;
   }
 
   // Connect Wallet
@@ -50,20 +57,21 @@
     border-radius: 12px;
     padding: 1rem;
     margin: 0px 1rem;
-    border: 1px solid rgb(255, 255, 255);
+    color: rgb(180, 180, 180);
     background-color: rgb(23, 5, 2);
-    color: rgb(255, 255, 255);
+    border: none;
   }
 
   // Actions menu
   > button:nth-of-type(2) {
     border-radius: 12px;
-    background: white;
+    // color: rgb(180, 180, 180);
+    background: rgb(180, 180, 180);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 12px;
-    border: 1px solid rgb(255, 255, 255);
+    border: none;
 
     > img {
       display: flex;
@@ -79,11 +87,11 @@
   border-radius: 12px;
   width: 9rem;
   position: absolute;
-  top: 88px;
-  right: 3rem;
+  top: 100px;
+  right: 3.65rem;
   box-shadow: 0 2px 4px 0 rgb(34 36 38 / 12%), 0 2px 10px 0 rgb(34 36 38 / 15%);
   z-index: 999;
-
+  border: 2 px solid red;
   > a {
     color: rgb(23, 5, 2);
     font-size: 16px;
@@ -95,7 +103,9 @@
     transition: 50ms ease;
 
     &:hover {
-      color: rgba(23, 5, 2, 0.7);
+      color: rgba(30, 15, 10, 0.7);
+      background: rgb(180, 180, 180);
+      border-radius: 12px;
     }
   }
 }
