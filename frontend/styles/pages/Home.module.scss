@@ -30,7 +30,7 @@
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 3.5rem;
-    background: linear-gradient(135deg, hsl(4, 100%, 49%) 55%, rgb(44, 15, 1));
+    background: linear-gradient(135deg, rgb(44, 15, 1) 50%, hsl(4, 100%, 49%));
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -62,7 +62,6 @@
 
     &:disabled {
       opacity: 0.5;
-      border: 2px solid rgb(23, 5, 2);
       cursor: not-allowed;
     }
   }
