@@ -22,7 +22,25 @@ export default function Footer() {
         return url ? (
           // Render link with icon image
           <a href={url} target="_blank" rel="noopener noreferrer" key={i}>
-            <Image src={icon} alt="Social link" width={30} height={30} />
+            <Image
+              className="icons"
+              src={icon}
+              alt="Social link"
+              width={30}
+              height={30}
+            />
+            <style jsx global>
+              {`
+                a .icons {
+                  opacity: 1;
+                  filter: contrast(0);
+                }
+                a:hover .icons {
+                  opacity: 1;
+                  filter: brightness(10);
+                }
+              `}
+            </style>
           </a>
         ) : null;
       })}

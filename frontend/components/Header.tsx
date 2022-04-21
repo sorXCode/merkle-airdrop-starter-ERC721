@@ -94,7 +94,13 @@ export default function Header() {
               // Render action link containing name and image
               <a href={url} target="_blank" rel="noopener noreferrer" key={i}>
                 <span>{name}</span>
-                <Image src={icon} width={16} height={16} alt={`${name} icon`} />
+                <Image
+                  className="icons"
+                  src={icon}
+                  width={16}
+                  height={16}
+                  alt={`${name} icon`}
+                />
               </a>
             ) : null;
           })}
