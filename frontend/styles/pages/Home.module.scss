@@ -30,17 +30,10 @@
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 3.5rem;
-    background: linear-gradient(135deg, rgb(44, 15, 1) 50%, hsl(4, 100%, 49%));
+    background: linear-gradient(to bottom, rgb(0, 0, 0) 75%, #232526);
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
-  // > p {
-  //   font-size: 18px;
-  //   color: rgb(113, 113, 113);
-  //   line-height: 1.5;
-  //   margin: 1rem;
-  // }
 
   > button {
     min-width: 150px;
@@ -49,20 +42,31 @@
     padding: 1rem;
     font-size: 16px;
     color: rgb(180, 180, 180);
-    background-color: rgb(23, 5, 2);
+    background-color: #232526;
     margin: auto;
     border: none;
   }
   > button:hover {
     color: rgb(239, 236, 233);
-    background-color: rgb(23, 5, 2);
-    box-shadow: 2px 2px 4px rgba(200, 200, 200, 0.25);
+    background-color: #232526;
+    box-shadow: 9px 10px 11px -9px rgba(0, 0, 0, 0.76);
+    -webkit-box-shadow: 9px 10px 11px -9px rgba(0, 0, 0, 0.76);
+    -moz-box-shadow: 9px 10px 11px -9px rgba(0, 0, 0, 0.76);
     transform: scale(1.01);
     transition: all 0.5s;
 
+    &:disabled:hover {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transition: none;
+      color: rgb(180, 180, 180);
+      box-shadow: none;
+      background-position: unset;
+    }
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      transform: none;
     }
   }
 }

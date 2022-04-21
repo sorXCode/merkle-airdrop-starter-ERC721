@@ -1,22 +1,25 @@
 // Claim page
 .claim {
   // Sizing
-  max-width: 600px;
-  margin: 0px auto 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
   text-align: center;
-  padding: 1rem;
+  padding: 4rem;
+  border: 2px solid red;
 }
 
 // Individual card container
 @supports (backdrop-filter: blur(25px)) {
   .card {
-    background: rgba(51, 51, 53, 0.75);
+    background: rgba(180, 180, 180, 0.75);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
   }
 }
 .card {
-  background: rgb(180, 180, 180); // rgba(45, 45, 45, 0.65);
+  background: rgba(180, 180, 180, 0.75);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   // background: white;
@@ -24,8 +27,10 @@
   color: rgb(23, 5, 2);
   padding: 2rem;
   width: calc(100% - 4rem - 20px);
-  max-width: 500px;
-  // box-shadow: rgb(117 117 117 / 10%) 0px 10px 20px 5px;
+  max-width: clamp(500px, 30vw, 65%);
+  box-shadow: 9px 10px 11px -9px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 9px 10px 11px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 9px 10px 11px -9px rgba(0, 0, 0, 0.75);
   text-align: center;
 
   // Header
@@ -33,7 +38,7 @@
     margin: 0px;
     line-height: 1.2;
     font-size: 2rem;
-    background: linear-gradient(135deg, rgb(23, 5, 2) 40%, rgb(180, 180, 180));
+    background: rgb(23, 5, 2);
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
