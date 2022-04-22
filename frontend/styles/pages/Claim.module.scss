@@ -20,8 +20,7 @@
 }
 .card {
   background: rgba(180, 180, 180, 0.75);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+
   // background: white;
   border-radius: 1rem;
   color: #232526;
@@ -35,8 +34,8 @@
 
   // Header
   > h1 {
-    margin: 0px;
-    line-height: 1.2;
+    margin: 0;
+    line-height: 1;
     font-size: 2rem;
     color: #232526;
   }
@@ -44,17 +43,15 @@
   // Description
   > p {
     line-height: 1.5;
-    margin: 2rem 0px;
+    margin: 1.5rem 0;
   }
 
-  // Main blue button
+  // Main black button
   > button {
     min-width: 150px;
-    margin-top: 1rem;
     font-weight: 500;
     border-radius: 12px;
     padding: 1rem;
-    font-size: clamp(0.85rem, 5vw, 1rem);
     color: rgb(180, 180, 180);
     background-color: rgb(23, 5, 2);
     margin: 0.5rem auto;
@@ -82,6 +79,6 @@
 }
 @media (max-width: 600px) {
   .claim h1 {
-    font-size: 1.65rem;
+    font-size: 1.5rem;
   }
 }

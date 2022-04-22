@@ -1,10 +1,16 @@
 // Footer
 .footer {
   // Spacey margin
-  margin: -0.5rem;
+  margin: 0rem;
   // Align right on desktop
   text-align: center;
   height: calc(70px - 2rem);
   font-size: clamp(0.75rem, 3.5vw, 0.85rem);
   line-height: 0.5;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    margin: -0.5rem;
+  }
 }
