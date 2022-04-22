@@ -56,6 +56,7 @@
     line-height: 1.15;
     border-radius: 12px;
     padding: 1rem;
+    text-transform: capitalize;
     margin: 0px 1rem;
     color: rgb(180, 180, 180);
     background-color: #232526;
@@ -125,6 +126,7 @@
   .header button:nth-of-type(1) {
     margin: 0 12vw 0 0;
     justify-self: flex-start;
+    font-size: clamp(0.65rem, 4vw, 0.75rem);
   }
   .header button:nth-of-type(2) {
     // padding: 0;
