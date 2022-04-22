@@ -1,4 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bellefair&family=Kanit:wght@100;200;300;500;600;700&family=Marcellus&display=swap");
+:root {
+  /*======= Fonts =======*/
+  --archivo-ff: "Archivo Black", sans-serif;
+  --bellefair-ff: "Bellefair", serif;
+  --kanit-ff: "Kanit", sans-serif;
+  --marcellus-ff: "Marcellus", serif;
+}
 html,
 body {
   // Fix spacing
@@ -9,12 +16,17 @@ body {
   // Font
   font-feature-settings: "ss01";
   text-rendering: optimizeLegibility;
-  font-family: "Kanit", sans-serif;
-  letter-spacing: 0.15rem;
+  // font-family: "Kanit", sans-serif;
+  font-family: var(--marcellus-ff);
+  font-weight: 700;
+  // letter-spacing: 0.15rem;
+  font-size: clamp(0.85rem, 5vw, 1.1rem);
+  color: #232526;
 
   // Background
   max-height: 100vh;
   background: linear-gradient(to bottom right, #fff 0%, #414345);
+  background-attachment: fixed;
 }
 
 // Override default link styles
@@ -28,12 +40,18 @@ button,
 input {
   font-feature-settings: "ss01";
   text-rendering: optimizeLegibility;
-  font-family: "Kanit", sans-serif;
-  letter-spacing: 0.15rem;
+  font-family: var(--marcellus-ff);
+  font-weight: 500;
+  font-size: clamp(0.75rem, 5vw, 0.85rem);
+  letter-spacing: 0.05rem;
   cursor: pointer;
   border: none;
 }
-
+h1,
+h2 {
+  font-family: var(--archivo-ff);
+  font-weight: 500;
+}
 button {
   background-image: linear-gradient(
     to right,
@@ -48,7 +66,7 @@ button {
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
+  color: #fff;
   border-radius: 10px;
   display: flex;
 }
@@ -73,4 +91,10 @@ button:disabled {
   cursor: not-allowed;
   transform: none;
   color: red;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: clamp(0.85rem, 5vw, 1.1rem);
+  }
 }

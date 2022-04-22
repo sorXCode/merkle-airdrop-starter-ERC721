@@ -1,10 +1,11 @@
 .home {
   // Sizing
   max-width: 100%;
-  margin: 0px auto 50px auto;
+  margin: auto;
   text-align: center;
   padding: 1rem;
   overflow: hidden;
+  height: 60vh;
 
   // Logo
   > div {
@@ -15,7 +16,7 @@
   > a {
     color: #9e9e9e;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 1rem;
     transition: 100ms ease;
 
     &:hover {
@@ -26,7 +27,7 @@
   // Header
   > h1 {
     // border: 2px solid red;
-    font-size: 3.5rem;
+    font-size: clamp(3rem, 7.5vw, 3rem);
     font-weight: bold;
     line-height: 1.2;
     margin-bottom: 3.5rem;
@@ -74,6 +75,15 @@
 // Responsive
 @media screen and (max-width: 728px) {
   .home {
+    height: 100%;
     padding: 1rem;
+    > div {
+      margin: 2rem;
+    }
+    > h1 {
+      // border: 2px solid red;
+      margin-bottom: 3rem;
+      font-size: clamp(2.2rem, 5vw, 2.5rem);
+    }
   }
 }

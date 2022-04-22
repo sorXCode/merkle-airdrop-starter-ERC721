@@ -1,28 +1,10 @@
 // Footer
 .footer {
   // Spacey margin
-  margin: 1rem 4rem;
+  margin: -0.5rem;
   // Align right on desktop
-  text-align: right;
+  text-align: center;
   height: calc(70px - 2rem);
-
-  // Individual social links
-  > a {
-    margin: 0.5rem;
-
-    &:hover {
-      transition: all 0.5s ease-in-out;
-      transform: scale(1.05);
-      opacity: 1;
-      filter: brightness(10);
-    }
-  }
-}
-
-// Responsive
-@media screen and (max-width: 728px) {
-  .footer {
-    // Align links center on mobile
-    text-align: center;
-  }
+  font-size: clamp(0.75rem, 3.5vw, 0.85rem);
+  line-height: 0.5;
 }

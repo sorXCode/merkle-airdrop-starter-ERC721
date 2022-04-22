@@ -1,6 +1,6 @@
 // Header
 .header {
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
   -webkit-box-pack: justify;
@@ -19,6 +19,7 @@
 // Header: Logo
 .header__logo {
   justify-content: flex-start;
+  align-self: end;
 
   > a {
     transition: 0.5s ease;
@@ -115,10 +116,22 @@
 @media screen and (max-width: 728px) {
   .header {
     padding: 2rem 1rem;
+    flex: 25% 75%;
   }
-
+  .header__actions {
+    width: 100%;
+    flex: 100%;
+    justify-content: space-around;
+  }
+  .header button:nth-of-type(1) {
+    margin: 0 12vw 0 0;
+  }
+  .header button:nth-of-type(2) {
+    // padding: 0;
+    margin: 0;
+  }
   .header__actionMenu {
-    top: 96px;
+    top: 115px;
     right: 1rem;
   }
 }

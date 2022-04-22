@@ -28,11 +28,11 @@ const actionMenuLinks: {
     icon: "/icons/twitter.svg",
     url: process.env.NEXT_PUBLIC_TWITTER,
   },
-  {
-    name: "GitHub",
-    icon: "/icons/github.svg",
-    url: process.env.NEXT_PUBLIC_GITHUB,
-  },
+  // {
+  //   name: "GitHub",
+  //   icon: "/icons/github.svg",
+  //   url: process.env.NEXT_PUBLIC_GITHUB,
+  // },
 ];
 
 // Three dots image data (for second button)
@@ -55,7 +55,7 @@ export default function Header() {
             <Image
               src="/croppedLogo.png"
               alt="Logo"
-              width={50}
+              width={40}
               height={60}
               priority
             />
@@ -101,6 +101,18 @@ export default function Header() {
                   height={16}
                   alt={`${name} icon`}
                 />
+                <style jsx global>
+                  {`
+                    a .icons {
+                      opacity: 1;
+                      filter: contrast(0);
+                    }
+                    a:hover .icons {
+                      opacity: 1;
+                      filter: brightness(10);
+                    }
+                  `}
+                </style>
               </a>
             ) : null;
           })}
