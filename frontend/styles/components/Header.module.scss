@@ -54,6 +54,7 @@
   > button:nth-of-type(1) {
     min-width: 150px;
     line-height: 1.15;
+    font-size: 1rem;
     border-radius: 12px;
     padding: 1rem;
     text-transform: capitalize;
@@ -71,7 +72,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 0.85rem;
     border: none;
 
     > img {
@@ -113,7 +114,7 @@
 }
 
 // Responsive
-@media screen and (max-width: 728px) {
+@media screen and (max-width: 600px) {
   .header {
     padding: 2rem 1rem;
     flex: 25% 75%;
@@ -125,8 +126,12 @@
   }
   .header button:nth-of-type(1) {
     margin: 0 12vw 0 0;
+    padding: 1rem;
     justify-self: flex-start;
-    font-size: clamp(0.65rem, 4vw, 0.75rem);
+    font-size: clamp(0.7rem, 4vw, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .header button:nth-of-type(2) {
     // padding: 0;
