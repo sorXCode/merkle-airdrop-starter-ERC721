@@ -28,11 +28,11 @@ const actionMenuLinks: {
     icon: "/icons/twitter.svg",
     url: process.env.NEXT_PUBLIC_TWITTER,
   },
-  {
-    name: "GitHub",
-    icon: "/icons/github.svg",
-    url: process.env.NEXT_PUBLIC_GITHUB,
-  },
+  // {
+  //   name: "GitHub",
+  //   icon: "/icons/github.svg",
+  //   url: process.env.NEXT_PUBLIC_GITHUB,
+  // },
 ];
 
 // Three dots image data (for second button)
@@ -53,10 +53,10 @@ export default function Header() {
         <Link href="/">
           <a>
             <Image
-              src="/logo.png"
+              src="/croppedLogo.png"
               alt="Logo"
-              width={100}
-              height={70}
+              width={40}
+              height={60}
               priority
             />
           </a>
@@ -76,7 +76,10 @@ export default function Header() {
         </button>
 
         {/* Actions button */}
-        <button onClick={() => setMenuOpen((previous) => !previous)}>
+        <button
+          className="hamburger__menu"
+          onClick={() => setMenuOpen((previous) => !previous)}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={threeDotsImage} alt="settings" />
         </button>
@@ -91,7 +94,25 @@ export default function Header() {
               // Render action link containing name and image
               <a href={url} target="_blank" rel="noopener noreferrer" key={i}>
                 <span>{name}</span>
-                <Image src={icon} width={16} height={16} alt={`${name} icon`} />
+                <Image
+                  className="icons"
+                  src={icon}
+                  width={16}
+                  height={16}
+                  alt={`${name} icon`}
+                />
+                <style jsx global>
+                  {`
+                    a .icons {
+                      opacity: 1;
+                      filter: contrast(0);
+                    }
+                    a:hover .icons {
+                      opacity: 1;
+                      filter: brightness(10);
+                    }
+                  `}
+                </style>
               </a>
             ) : null;
           })}

@@ -52,8 +52,11 @@ export default function Claim() {
         ) : numTokens == 0 ? (
           // Not part of airdrop
           <div className={styles.card}>
-            <h1>You do not qualify.</h1>
-            <p>Sorry, your address does not qualify to claim a certificate.</p>
+            <h1>Ineligible Address</h1>
+            <p>
+              Sorry, your address is not eligible to claim a Web3Bridge
+              certificate.
+            </p>
           </div>
         ) : alreadyClaimed ? (
           // Already claimed airdrop
