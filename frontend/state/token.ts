@@ -46,6 +46,7 @@ function useToken() {
   const [numTokens, setNumTokens] = useState<number>(0); // Number of claimable tokens
   const [alreadyClaimed, setAlreadyClaimed] = useState<boolean>(false); // Claim status
   const [isValidNetwork, setisValidNetwork] = useState<boolean>(false);
+  // const [connected, setConnected] = useState<boolean>(false); // Wallet connection
 
   useEffect(() => {
     // @ts-ignore
@@ -101,7 +102,9 @@ function useToken() {
       // Return claimed status
       return await token.hasClaimed(address);
     }
-    showNetworkErrorAlert();
+    if (!address) {
+      throw new Error("Not Authenticated");
+    }
   };
 
   const claimAirdrop = async (): Promise<void> => {
@@ -132,8 +135,6 @@ function useToken() {
       } catch (e) {
         console.error(`Error when claiming certificate: ${e}`);
       }
-    } else {
-      showNetworkErrorAlert();
     }
   };
 
@@ -177,8 +178,8 @@ function useToken() {
 
 // Create unstated-next container
 export const token = createContainer(useToken);
-function showNetworkErrorAlert() {
-  alert(
-    `Invalid Network, please connect to ${process.env.NEXT_PUBLIC_RPC_NETWORK_NAME}`
-  );
-}
+// function showNetworkErrorAlert() {
+//   alert(
+//     `Invalid Network, please connect to ${process.env.NEXT_PUBLIC_RPC_NETWORK_NAME}`
+//   );
+// }
