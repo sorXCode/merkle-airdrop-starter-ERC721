@@ -40,7 +40,7 @@ export default function Home() {
         <h1>{heading}</h1>
 
         {/* Project description */}
-        <p>{description}</p>
+        {/* <p>{description}</p> */}
 
         {/* Claim button */}
         {!address ? (

@@ -66,6 +66,9 @@ export default function Claim() {
               Your address ({address}) <br /> has successfully claimed a
               Web3Bridge Certificate.
             </p>
+            <button>
+              <a href=""></a>Preview
+            </button>
           </div>
         ) : (
           // Claim your airdrop
