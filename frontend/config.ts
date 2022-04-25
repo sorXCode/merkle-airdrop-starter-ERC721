@@ -5,7 +5,7 @@ type IConfig = {
 
 // Config from generator
 const config: IConfig = {
-  airdrop: [
+  "airdrop": [
     "0xe66904a5318f27880bf1d20D77Ffa8FBdaC5E5E7",
     "0x71c7E43E96C1e7bBc4D8eB50e165deeE267770D2",
     "0xF65330dC75e32B20Be62f503a337cD1a072f898f",
@@ -30,8 +30,9 @@ const config: IConfig = {
     "0xA05d173F369263fB697e1a0e214b107b59237400",
     "0xC02cc6235f43D9e51143B5ec1Bb12f2Fa7BB6B7a",
     "0x34d9297629323795CE29190159206cDD81e6B2d2",
-    "0xc34ad4a95adcd9021182fd5607ed822db738e7c4",
-  ],
+    "0xC34ad4A95adCD9021182fd5607ED822DB738E7c4",
+    "0x54bae63e59B422Dd7C047E375f051D60C37cb60F"
+  ]
 };
 
 // Export config
