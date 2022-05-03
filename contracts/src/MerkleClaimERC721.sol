@@ -8,6 +8,12 @@ import { ERC721 } from "@openzeppelin/token/ERC721/ERC721.sol"; // OZ: ERC721
 import { MerkleProof } from "@openzeppelin/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
 import { Ownable } from "@openzeppelin/access/Ownable.sol"; // OZ: MerkleProof
 
+import "@openzeppelin/contracts/utils/Strings.sol"; // OZ: Convert uint to string
+
+
+    
+
+
 /// @title MerkleClaimERC721
 /// @notice ERC721 claimable by members of a merkle tree
 /// @author web3bridge CohortVI <contact@web3bridge.com>
@@ -81,11 +87,18 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
     emit UpdatedBaseURI(_newURI);
   }
 
+  function convertUintToString(uint256 x) pure external returns(string memory){
+        return Strings.toString(x);
+    }
+
   /// @notice Allows claiming tokens if address is part of merkle tree
   /// @param _to address of claimee
   /// @param _tokenId id of the token to claimee
   /// @param _proof merkle proof to prove address
-  function claim(address _to, string memory _tokenId, bytes32[] calldata _proof) external {
+  function claim(address _to, uint256 _tokenId, bytes32[] calldata _proof) external {
+    // Converts _tokenId from uint256 to string 
+    uint256 _tokenId = convertUintToString(uint256);
+    
     // Throw if address has already claimed tokens
     if (hasClaimed[_to]) revert AlreadyClaimed();
 
