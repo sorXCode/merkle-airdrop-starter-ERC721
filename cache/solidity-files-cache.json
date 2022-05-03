@@ -11696,183 +11696,6 @@
       "versionRequirement": ">=0.8.0",
       "artifacts": {}
     },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/lib/solmate/src/test/utils/users/ERC1155User.sol": {
-      "lastModificationDate": 1649695502175,
-      "contentHash": "73bf79cd5226264c039b428550e74dd3",
-      "sourceName": "contracts/lib/solmate/src/test/utils/users/ERC1155User.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/lib/solmate/src/tokens/ERC1155.sol"
-      ],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/lib/solmate/src/test/utils/users/ERC20User.sol": {
-      "lastModificationDate": 1649695502175,
-      "contentHash": "cba2ff7c3014af2397d2d26652388940",
-      "sourceName": "contracts/lib/solmate/src/test/utils/users/ERC20User.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/lib/solmate/src/tokens/ERC20.sol"
-      ],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/lib/solmate/src/test/utils/users/ERC4626User.sol": {
-      "lastModificationDate": 1649695502175,
-      "contentHash": "f702cfe34bcf05eea659e60c3a697e3a",
-      "sourceName": "contracts/lib/solmate/src/test/utils/users/ERC4626User.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/lib/solmate/src/mixins/ERC4626.sol",
-        "contracts/lib/solmate/src/test/utils/users/ERC20User.sol",
-        "contracts/lib/solmate/src/tokens/ERC20.sol",
-        "contracts/lib/solmate/src/utils/FixedPointMathLib.sol",
-        "contracts/lib/solmate/src/utils/SafeTransferLib.sol"
-      ],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/lib/solmate/src/test/utils/users/ERC721User.sol": {
-      "lastModificationDate": 1649695502175,
-      "contentHash": "9e4d1e01806cd93a1d3c067adbe585ef",
-      "sourceName": "contracts/lib/solmate/src/test/utils/users/ERC721User.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/lib/solmate/src/tokens/ERC721.sol"
-      ],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/lib/solmate/src/test/utils/users/GenericUser.sol": {
-      "lastModificationDate": 1649695502175,
-      "contentHash": "7ec8e26e98972ce6397baf76eeeab0e2",
-      "sourceName": "contracts/lib/solmate/src/test/utils/users/GenericUser.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
     "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/lib/solmate/src/test/utils/weird-tokens/MissingReturnToken.sol": {
       "lastModificationDate": 1649695502176,
       "contentHash": "50a051edf0514e8a5e9a9e78739d0918",
@@ -12474,10 +12297,10 @@
       "versionRequirement": ">=0.8.0",
       "artifacts": {}
     },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/MerkleClaimERC20.sol": {
-      "lastModificationDate": 1649693926374,
-      "contentHash": "822ff94b6d7b579c4650884baac6121f",
-      "sourceName": "contracts/src/MerkleClaimERC20.sol",
+    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/IMerkleClaimERC721.sol": {
+      "lastModificationDate": 1650821361516,
+      "contentHash": "9f8ff8c803fc5a4abca2989092ee9f77",
+      "sourceName": "contracts/src/IMerkleClaimERC721.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -12504,7 +12327,7 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
+      "versionRequirement": "^0.8.6",
       "artifacts": {}
     },
     "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/MerkleClaimERC721.sol": {
@@ -12537,43 +12360,6 @@
         }
       },
       "imports": [],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/MerkleClaimERC20.t.sol": {
-      "lastModificationDate": 1649693926374,
-      "contentHash": "3b8b53050e6be6e01b220ba55e316011",
-      "sourceName": "contracts/src/test/MerkleClaimERC20.t.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/src/MerkleClaimERC20.sol",
-        "contracts/src/test/utils/MerkleClaimERC20Test.sol",
-        "contracts/src/test/utils/MerkleClaimERC20User.sol"
-      ],
       "versionRequirement": ">=0.8.0",
       "artifacts": {}
     },
@@ -12610,77 +12396,6 @@
         "contracts/src/MerkleClaimERC721.sol",
         "contracts/src/test/utils/MerkleClaimERC721Test.sol",
         "contracts/src/test/utils/MerkleClaimERC721User.sol"
-      ],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/utils/MerkleClaimERC20Test.sol": {
-      "lastModificationDate": 1649693926375,
-      "contentHash": "56838abd8c55f0570afe83ed2ff8853a",
-      "sourceName": "contracts/src/test/utils/MerkleClaimERC20Test.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/src/MerkleClaimERC20.sol",
-        "contracts/src/test/utils/MerkleClaimERC20User.sol"
-      ],
-      "versionRequirement": ">=0.8.0",
-      "artifacts": {}
-    },
-    "/Users/sorxcode/Muse/Web3Bridge/merkle-airdrop-starter/contracts/src/test/utils/MerkleClaimERC20User.sol": {
-      "lastModificationDate": 1649693926375,
-      "contentHash": "7f3288da093259fb6d0f5f5251c952de",
-      "sourceName": "contracts/src/test/utils/MerkleClaimERC20User.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ]
-            }
-          },
-          "evmVersion": "london"
-        }
-      },
-      "imports": [
-        "contracts/src/MerkleClaimERC20.sol"
       ],
       "versionRequirement": ">=0.8.0",
       "artifacts": {}

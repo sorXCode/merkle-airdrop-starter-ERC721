@@ -21,6 +21,10 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
 
   /// token id tracker
   uint48 id;
+
+  // token baseURI
+  string baseURI = "ipfs://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq/";
+
   /// @notice Mapping of addresses who have claimed tokens
   mapping(address => bool) public hasClaimed;
 
@@ -58,6 +62,11 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
   /// @param _newRoot new merkleRoot
   event UpdatedRoot(bytes32 _newRoot);
 
+  /// @notice emiited after successful baseURI change
+  /// @param _newBaseURI new baseURI
+  event UpdatedBaseURI(string _newBaseURI);
+  
+
   /// ============ Functions ============
 
   /// @notice Updates the merkleRoot with the given new root
@@ -67,32 +76,34 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
     emit UpdatedRoot(_newRoot);
   }
 
+  function updateBaseURI(string memory _newURI) external onlyOwner {
+    baseURI = _newURI;
+    emit UpdatedBaseURI(_newURI);
+  }
+
   /// @notice Allows claiming tokens if address is part of merkle tree
-  /// @param to address of claimee
-  /// @param _tokenURI of token owed to claimee
-  /// @param proof merkle proof to prove address
-  function claim(address to, string memory _tokenURI, bytes32[] calldata proof) external {
+  /// @param _to address of claimee
+  /// @param _tokenId id of the token to claimee
+  /// @param _proof merkle proof to prove address
+  function claim(address _to, string memory _tokenId, bytes32[] calldata _proof) external {
     // Throw if address has already claimed tokens
-    if (hasClaimed[to]) revert AlreadyClaimed();
+    if (hasClaimed[_to]) revert AlreadyClaimed();
 
     // Verify merkle proof, or revert if not in tree
-    bytes32 leaf = keccak256(abi.encodePacked(to));
-    bool isValidLeaf = MerkleProof.verify(proof, merkleRoot, leaf);
+    bytes32 leaf = keccak256(abi.encodePacked(_to, _tokenId));
+    bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);
     if (!isValidLeaf) revert NotInMerkle();
 
     // Set address to claimed
-    hasClaimed[to] = true;
+    hasClaimed[_to] = true;
 
     id++;
-    // Mint tokens to address
-    _mint(to, id);
-    _setTokenURI(id, _tokenURI);
+    // Mint token to address
+    _mint(_to, id);
+    _setTokenURI(id, string(abi.encodePacked(baseURI, _tokenId, ".jpeg")));
 
     // Emit claim event
-    emit Claim(to, id);
+    emit Claim(_to, id);
   }
 }
-// Deployer: 0x4ce64d91e25359443f6d10fe2b7c5e4118114e7a
-// Deployed to: 0x67eab3b2be77d8a071ac3e758049ca74106036be
-// Transaction hash: 0xa128e47c9864995b4ce0e7d87b0326763b2165c9071da4d8d40279fa597bb86a
 
