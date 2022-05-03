@@ -97,7 +97,7 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
   /// @param _proof merkle proof to prove address
   function claim(address _to, uint256 _id, bytes32[] calldata _proof) external {
     // Converts _tokenId from uint256 to string 
-    uint256 _tokenId = convertUintToString(uint256);
+    string memory _tokenId = convertUintToString(id);
     
     // Throw if address has already claimed tokens
     if (hasClaimed[_to]) revert AlreadyClaimed();
