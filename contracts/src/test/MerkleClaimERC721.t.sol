@@ -41,8 +41,8 @@ contract Tests is MerkleClaimERC721Test {
     ALICE.claim(
       // Claiming for Alice
       ALICE.ADDRESS(),
-      // 1 tokens
-      "ipfs://unknown",
+      // token 1
+      1,
       // With valid proof
       getAliceProof()
     );
@@ -60,8 +60,8 @@ contract Tests is MerkleClaimERC721Test {
     ALICE.claim(
       // Claiming for Alice
       ALICE.ADDRESS(),
-      // 1 token
-      "ipfs://unknown",
+      // token 1
+      1,
       // With valid proof
       getAliceProof()
     );
@@ -70,9 +70,9 @@ contract Tests is MerkleClaimERC721Test {
     ALICE.claim(
       // Claiming for Alice
       ALICE.ADDRESS(),
-      // 1 token
-      "ipfs://unknown",
-      // With valid proof
+     // token 1
+      1,
+       // With valid proof
       getAliceProof()
     );
   }
@@ -87,8 +87,8 @@ contract Tests is MerkleClaimERC721Test {
     ALICE.claim(
       // Claiming for Alice
       address(ALICE),
-      // 100 tokens
-      "ipfs://unknown",
+      // token 1
+      1,
       // With valid proof
       _aliceProof
     );
@@ -104,9 +104,9 @@ contract Tests is MerkleClaimERC721Test {
     BOB.claim(
       // Claiming for Bob
       BOB.ADDRESS(),
-      // 1 token
-      "ipfs://unknown",
-      // With valid proof (for Alice)
+     // token 1
+      1,
+       // With valid proof (for Alice)
       _aliceProof
     );
   }
@@ -120,9 +120,9 @@ contract Tests is MerkleClaimERC721Test {
     BOB.claim(
       // Claiming for Alice
       ALICE.ADDRESS(),
-      // 1 token
-      "ipfs://unknown",
-      // With valid proof (for Alice)
+     // token 1
+      1,
+       // With valid proof (for Alice)
       getAliceProof()
     );
 

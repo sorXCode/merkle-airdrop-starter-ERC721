@@ -36,9 +36,9 @@ contract MerkleClaimERC721User {
 
   /// @notice Allows user to claim tokens from contract
   /// @param to address of claimee
-  /// @param _tokenURI of tokens owed to claimee
+  /// @param _id of tokens owed to claimee
   /// @param proof merkle proof to prove address and amount are in tree
-  function claim(address to, string memory _tokenURI, bytes32[] calldata proof) public {
-    TOKEN.claim(to, _tokenURI, proof);
+  function claim(address to, uint _id, bytes32[] calldata proof) public {
+    TOKEN.claim(to, _id, proof);
   }
 }
