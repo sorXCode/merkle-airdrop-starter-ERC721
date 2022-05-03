@@ -4,7 +4,6 @@
   "description": "Script to generate Merkle tree root from inputs",
   "scripts": {
     "start": "ts-node src/app.ts",
-    "start-nft": "ts-node src/app-nft.ts",
     "getProof": "ts-node src/getProof.ts"
   },
   "author": "Anish Agnihotri",
