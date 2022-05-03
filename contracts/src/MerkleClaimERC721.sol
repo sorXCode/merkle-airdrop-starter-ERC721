@@ -87,7 +87,7 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
     emit UpdatedBaseURI(_newURI);
   }
 
-  function convertUintToString(uint256 x) pure external returns(string memory){
+  function convertUintToString(uint256 x) pure internal returns(string memory){
         return Strings.toString(x);
     }
 
