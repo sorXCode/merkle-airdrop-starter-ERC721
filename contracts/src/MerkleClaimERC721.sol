@@ -83,17 +83,13 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
     emit UpdatedBaseURI(_newURI);
   }
 
-  function convertUintToString(uint256 x) pure internal returns(string memory){
-        return Strings.toString(x);
-    }
-
   /// @notice Allows claiming tokens if address is part of merkle tree
   /// @param _to address of claimee
   /// @param _id id of the token to claim
   /// @param _proof merkle proof to prove address
   function claim(address _to, uint256 _id, bytes32[] calldata _proof) external {
     // Converts _id from uint256 to string 
-    string memory _tokenId = convertUintToString(_id);
+    string memory _tokenId = Strings.toString(_id);
     
     // Throw if address has already claimed tokens
     if (hasClaimed[_to]) revert AlreadyClaimed();
