@@ -2,5 +2,5 @@
 pragma solidity ^0.8.6;
 interface IMerkleClaimERC721 {
   function updateMerkleRoot(bytes32 _newRoot) external;
-  function claim(address to, string memory _tokenURI, bytes32[] calldata proof) external;
+  function claim(address _to, uint256 _id, bytes32[] calldata _proof) external;
 }
