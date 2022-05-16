@@ -25,14 +25,14 @@ export default function Claim() {
 
   // Local button loading
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
-  
+
   const addLink = () => {
-      AddressList.find((x: string | null, i: number | null) => {
+      AddressList.find((x) => {
         // console.log('address', address)
-        if (address?.toLowerCase() === x?.toLowerCase()) {
-          console.log(x, i);
-          location.href = `https://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq.ipfs.dweb.link/${i}.jpeg`;
-          return { x, i };
+        if (address?.toLowerCase() === x?.address.toLowerCase()) {
+          console.log(x);
+          location.href = `https://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq.ipfs.dweb.link/${x.index}.jpeg`;
+          // return { x, i };
         }
       })
   }
