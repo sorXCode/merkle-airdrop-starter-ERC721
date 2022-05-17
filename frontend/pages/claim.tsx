@@ -81,7 +81,7 @@ export default function Claim() {
               Web3Bridge Certificate.
             </p>
             <button onClick={addLink}>
-              {/* <a href={link} target="_blank" rel="noreferrer"> */}
+
               View
               {/* </a> */}
             </button>
