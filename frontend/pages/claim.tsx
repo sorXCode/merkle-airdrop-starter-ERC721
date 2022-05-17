@@ -82,7 +82,7 @@ export default function Claim() {
             </p>
             <button onClick={addLink}>
               {/* <a href={link} target="_blank" rel="noreferrer"> */}
-              Preview
+              View
               {/* </a> */}
             </button>
           </div>
