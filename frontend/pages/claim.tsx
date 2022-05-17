@@ -27,14 +27,8 @@ export default function Claim() {
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
   const addLink = () => {
-      AddressList.find((x) => {
-        // console.log('address', address)
-        if (address?.toLowerCase() === x?.address.toLowerCase()) {
-          console.log(x);
-          location.href = `https://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq.ipfs.dweb.link/${x.index}.jpeg`;
-          // return { x, i };
-        }
-      })
+      let index = AddressList[address];
+      location.href = `https://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq.ipfs.dweb.link/${index}.jpeg`;
   }
   /**
    * Claims airdrop with local button loading
