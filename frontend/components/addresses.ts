@@ -1,5 +1,5 @@
 // mapping of address to index
-export const AddressList = {
+export const AddressList: Record<string, number> = {
   "0xe66904a5318f27880bf1d20D77Ffa8FBdaC5E5E7": 0,
   "0x9ae1e982Fc9A9D799e611843CB9154410f11Fe35": 2,
   "0x71c7E43E96C1e7bBc4D8eB50e165deeE267770D2": 3,

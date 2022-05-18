@@ -7,7 +7,6 @@ import { AddressList } from '../components/addresses';
 
 export default function Claim() {
   // Global ETH state
-  // const [link, setLink] = useState('');
   const { address, unlock }: { address: string | null; unlock: Function } =
     eth.useContainer();
   // Global token state
@@ -27,20 +26,19 @@ export default function Claim() {
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
   const addLink = () => {
+    if (typeof address==='string') {
       let index = AddressList[address];
       location.href = `https://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq.ipfs.dweb.link/${index}.jpeg`;
+    }
   }
   /**
    * Claims airdrop with local button loading
    */
   const claimWithLoading = async () => {
-    // console.log('calling claim')
     setButtonLoading(true); // Toggle
     await claimAirdrop(); // Claim
     setButtonLoading(false); // Toggle
   };
-// 0x30f9a9c1aa282508901b606dea2d887d4dd072e8;
-// 0x30f9a9c1aa282508901b606dea2d887d4dd072e8;
   return (
     <Layout>
       <div className={styles.claim}>
