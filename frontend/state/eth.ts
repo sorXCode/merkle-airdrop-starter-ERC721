@@ -74,6 +74,8 @@ function useEth() {
       subscriptions: {
         // On address update
         address: async (address) => {
+          // checksum address
+          address = ethers.utils.getAddress(address);
           // Update address
           setAddress(address);
           // If no address, nullify provider
