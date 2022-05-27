@@ -6,7 +6,7 @@ pragma solidity >=0.8.0;
 import { ERC721URIStorage } from "@openzeppelin/token/ERC721/extensions/ERC721URIStorage.sol"; // OZ: ERC721URIStorage
 import { ERC721 } from "@openzeppelin/token/ERC721/ERC721.sol"; // OZ: ERC721
 import { MerkleProof } from "@openzeppelin/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
-import { Ownable } from "@openzeppelin/access/Ownable.sol"; // OZ: MerkleProof
+import { Ownable } from "@openzeppelin/access/Ownable.sol"; // OZ: Ownable
 
 import "@openzeppelin/utils/Strings.sol"; // OZ: Convert uint to string
 
@@ -95,7 +95,7 @@ contract MerkleClaimERC721 is ERC721URIStorage, Ownable {
     if (hasClaimed[_to]) revert AlreadyClaimed();
 
     // Verify merkle proof, or revert if not in tree
-    bytes32 leaf = keccak256(abi.encodePacked(_to, _tokenId));
+    bytes32 leaf = keccak256(abi.encodePacked(_to, _id));
     bool isValidLeaf = MerkleProof.verify(_proof, merkleRoot, leaf);
     if (!isValidLeaf) revert NotInMerkle();
 
