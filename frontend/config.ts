@@ -5,7 +5,7 @@ type IConfig = {
 };
 
 // Config from generator
-const config: IConfig = {
+export const config: IConfig = {
   "decimals": 0,
   "airdrop": {
     "0xe66904a5318f27880bf1d20D77Ffa8FBdaC5E5E7": 0,
@@ -40,4 +40,4 @@ const config: IConfig = {
 };
 
 // Export config
-export default config;
+// export default config;
