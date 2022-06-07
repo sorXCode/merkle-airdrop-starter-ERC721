@@ -64,7 +64,7 @@ export default class Generator {
   generateLeaf(address: string, value: string): Buffer {
     return Buffer.from(
       // Hash in appropriate Merkle format
-      solidityKeccak256(["address", "string"], [address, value]).slice(2),
+      solidityKeccak256(["address", "uint256"], [address, value]).slice(2),
       "hex"
     );
   }

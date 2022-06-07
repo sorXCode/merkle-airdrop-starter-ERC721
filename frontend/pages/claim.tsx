@@ -12,12 +12,12 @@ export default function Claim() {
   // Global token state
   const {
     dataLoading,
-    numTokens,
+    tokenId,
     alreadyClaimed,
     claimAirdrop,
   }: {
     dataLoading: boolean;
-    numTokens: number;
+    tokenId: string |  null;
     alreadyClaimed: boolean;
     claimAirdrop: Function;
   } = token.useContainer();
@@ -55,7 +55,7 @@ export default function Claim() {
             <h1>Loading details...</h1>
             <p>Please hold while we collect details about your address.</p>
           </div>
-        ) : numTokens == 0 ? (
+        ) : tokenId===null ? (
           // Not part of airdrop
           <div className={styles.card}>
             <h1>Ineligible Address</h1>

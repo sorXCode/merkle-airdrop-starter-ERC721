@@ -32,7 +32,7 @@ function throwErrorAndExit(error: string): void {
   }
 
   // Collect config
-  const decimals: number = configData.decimals ?? 18;
+  const decimals: number = configData.decimals ?? 0;
   const airdrop: Record<string, number> = configData.airdrop;
 
   // Initialize and call generator
