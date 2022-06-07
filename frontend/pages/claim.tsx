@@ -3,9 +3,13 @@ import { useState } from "react"; // State management
 import { token } from "state/token"; // Global state: Tokens
 import Layout from "components/Layout"; // Layout wrapper
 import styles from "styles/pages/Claim.module.scss"; // Page styles
-import { AddressList } from '../components/addresses';
+// import { AddressList } from '../components/addresses';
+
+import {config} from "config";
+
 
 export default function Claim() {
+  const addressList = config.airdrop;
   // Global ETH state
   const { address, unlock }: { address: string | null; unlock: Function } =
     eth.useContainer();
@@ -27,7 +31,7 @@ export default function Claim() {
 
   const addLink = () => {
     if (typeof address==='string') {
-      let index = AddressList[address];
+      let index = addressList[address];
       location.href = `https://bafybeigceihbii6flqhdtnvleu4wiwbsekbju2hzbsjjw2nmv5u752fywq.ipfs.dweb.link/${index}.jpeg`;
     }
   }

@@ -1,4 +1,4 @@
-import config from "config"; // Airdrop config
+import {config} from "../config"; // Airdrop config
 import { eth } from "state/eth"; // ETH state provider
 import { ethers } from "ethers"; // Ethers
 import keccak256 from "keccak256"; // Keccak256 hashing
@@ -58,7 +58,7 @@ function useToken() {
     window.ethereum.on("chainChanged", (chainId: string) => {
       setisValidNetwork(parseInt(chainId) === networkId);
     });
-  }, []);
+  }, [setisValidNetwork]);
   /**
    * Get contract
    * @returns {ethers.Contract} signer-initialized contract
@@ -101,16 +101,14 @@ function useToken() {
    * @returns {Promise<boolean>} true if already claimed, false if available
    */
   const getClaimedStatus = async (address: string): Promise<boolean> => {
-    console.log("Getting claim status");
-    console.log(isValidNetwork);
-    
     if (isValidNetwork) {
       // Collect token contract
       const token: ethers.Contract = getContract();
       // Return claimed status
       return await token.hasClaimed(address);
     }
-      throw new Error("Not Authenticated");
+    showNetworkErrorAlert();
+    return false;
   };
 
   const claimAirdrop = async (): Promise<void> => {
@@ -125,13 +123,13 @@ function useToken() {
       // Get properly formatted address
       const formattedAddress: string = ethers.utils.getAddress(address);
       const tokenId: string | null = getAirdropId(formattedAddress);
-      if (!!tokenId){
+      if (!!tokenId) {
         // Get tokens for address
         // Generate hashed leaf from address
         const leaf: Buffer = generateLeaf(formattedAddress, tokenId);
         // Generate airdrop proof
         const proof: string[] = merkleTree.getHexProof(leaf);
-  
+
         // Try to claim airdrop and refresh sync status
         try {
           const tx = await token.claim(formattedAddress, Number(tokenId), proof);
@@ -141,7 +139,7 @@ function useToken() {
           console.error(`Error when claiming certificate: ${e}`);
         }
       }
-      }
+    }
   };
 
   /**
@@ -170,9 +168,16 @@ function useToken() {
 
   // On load:
   useEffect(() => {
+    // get connected chainId on load
+    async function getChainId() {
+      // @ts-ignore
+      const chainId = parseInt(await window.ethereum.request({ 'method': 'eth_chainId' }));
+      setisValidNetwork(chainId === networkId)
+    }
+    getChainId()
     syncStatus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address]);
+  }, [address, isValidNetwork]);
 
   return {
     dataLoading,
@@ -184,8 +189,8 @@ function useToken() {
 
 // Create unstated-next container
 export const token = createContainer(useToken);
-// function showNetworkErrorAlert() {
-//   alert(
-//     `Invalid Network, please connect to ${process.env.NEXT_PUBLIC_RPC_NETWORK_NAME}`
-//   );
-// }
+function showNetworkErrorAlert() {
+  alert(
+    `Invalid Network, please connect to ${process.env.NEXT_PUBLIC_RPC_NETWORK_NAME}`
+  );
+}

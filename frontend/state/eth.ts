@@ -14,9 +14,9 @@ import type { Web3Provider } from "@ethersproject/providers";
 // Network
 export const networkId = process.env.NEXT_PUBLIC_RPC_NETWORK
   ? // Use network
-    Number(process.env.NEXT_PUBLIC_RPC_NETWORK)
+  Number(process.env.NEXT_PUBLIC_RPC_NETWORK)
   : // Else, default to Rinkeby
-    4;
+  4;
 
 // Onboard.js wallet providers
 const wallets: (WalletModule | WalletInitOptions)[] = [
@@ -74,13 +74,15 @@ function useEth() {
       subscriptions: {
         // On address update
         address: async (address) => {
-          // checksum address
-          address = ethers.utils.getAddress(address);
-          // Update address
-          setAddress(address);
           // If no address, nullify provider
           if (!address) {
             setProvider(null);
+            setAddress(null);
+          } else {
+            // checksum address
+            address = ethers.utils.getAddress(address);
+            // Update address
+            setAddress(address);
           }
         },
         // On wallet update
