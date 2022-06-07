@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import fs from "fs"; // Filesystem
 import path from "path"; // Path routing
 import Generator from "./generator"; // Generator
@@ -5,7 +6,7 @@ import { logger } from "./utils/logger"; // Logging
 
 // Config file path
 const configPath: string = path.join(__dirname, "../config.json");
-
+const addr = process.argv[2] ? ethers.utils.getAddress(process.argv[2]) : ""
 /**
  * Throws error and exists process
  * @param {string} erorr to log
@@ -36,5 +37,10 @@ function throwErrorAndExit(error: string): void {
 
   // Initialize and call generator
   const generator = new Generator(decimals, airdrop);
+  if (!!addr){
+    await generator.getProof(addr);
+    return;
+  }
+  logger.info("No address provided, generating root")
   await generator.process();
 })();
