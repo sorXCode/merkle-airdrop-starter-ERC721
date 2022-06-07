@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Script to generate Merkle tree root from inputs",
   "scripts": {
-    "start": "ts-node src/app.ts",
-    "getProof": "ts-node src/getProof.ts"
+    "start": "ts-node src/app.ts"
   },
   "author": "Anish Agnihotri",
   "license": "AGPL-3.0-only",

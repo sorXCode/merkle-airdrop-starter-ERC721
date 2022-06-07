@@ -12,10 +12,12 @@ import { networkId } from "./eth";
  * @param {string} value of airdrop tokens to claimee
  * @returns {Buffer} Merkle Tree node
  */
-function generateLeaf(address: string): Buffer {
+function generateLeaf(address: string, value: string): Buffer {
   return Buffer.from(
     // Hash in appropriate Merkle format
-    ethers.utils.solidityKeccak256(["address"], [address]).slice(2),
+    ethers.utils
+      .solidityKeccak256(["address", "uint256"], [address, value])
+      .slice(2),
     "hex"
   );
 }
@@ -23,8 +25,11 @@ function generateLeaf(address: string): Buffer {
 // Setup merkle tree
 const merkleTree = new MerkleTree(
   // Generate leafs
-  config.airdrop.map((address) =>
-    generateLeaf(ethers.utils.getAddress(address))
+  Object.entries(config.airdrop).map(([address, tokenId]) =>
+    generateLeaf(
+      ethers.utils.getAddress(address),
+      ethers.utils.parseUnits(tokenId.toString(), config.decimals).toString()
+    )
   ),
   // Hashing function
   keccak256,
@@ -43,7 +48,7 @@ function useToken() {
 
   // Local state
   const [dataLoading, setDataLoading] = useState<boolean>(true); // Data retrieval status
-  const [numTokens, setNumTokens] = useState<number>(0); // Number of claimable tokens
+  const [tokenId, setTokenId] = useState<string | null>(null); // Id of claimable token
   const [alreadyClaimed, setAlreadyClaimed] = useState<boolean>(false); // Claim status
   const [isValidNetwork, setisValidNetwork] = useState<boolean>(false);
   // const [connected, setConnected] = useState<boolean>(false); // Wallet connection
@@ -66,7 +71,7 @@ function useToken() {
         // hasClaimed mapping
         "function hasClaimed(address) public view returns (bool)",
         // Claim function
-        "function claim(address to, string memory _tokenURI, bytes32[] calldata proof) external",
+        "function claim(address _to, uint256 _id, bytes32[] calldata _proof) external",
       ],
       // Get signer from authed provider
       provider?.getSigner()
@@ -77,17 +82,17 @@ function useToken() {
    * Collects number of tokens claimable by a user from Merkle tree
    * @param {string} address to check
    */
-  const getAirdropAmount = (address: string): number => {
+  const getAirdropId = (address: string): string | null => {
     // If address is in airdrop. convert address to correct checksum
-    address = ethers.utils.getAddress(address);
+    address = ethers.utils.getAddress(address)
 
-    if (config.airdrop.includes(address)) {
-      // Return number of tokens available
-      return 1;
+    if (address in config.airdrop) {
+      // Return tokenId of address
+      return ethers.utils.parseUnits(config.airdrop[address].toString(), config.decimals).toString();
     }
 
-    // Else, return 0 tokens
-    return 0;
+    // Else, return invalidID
+    return null;
   };
 
   /**
@@ -95,16 +100,17 @@ function useToken() {
    * @param {string} address to check
    * @returns {Promise<boolean>} true if already claimed, false if available
    */
-  const getClaimedStatus = async (address: string): Promise<boolean | void> => {
+  const getClaimedStatus = async (address: string): Promise<boolean> => {
+    console.log("Getting claim status");
+    console.log(isValidNetwork);
+    
     if (isValidNetwork) {
       // Collect token contract
       const token: ethers.Contract = getContract();
       // Return claimed status
       return await token.hasClaimed(address);
     }
-    if (!address) {
       throw new Error("Not Authenticated");
-    }
   };
 
   const claimAirdrop = async (): Promise<void> => {
@@ -118,24 +124,24 @@ function useToken() {
       const token: ethers.Contract = getContract();
       // Get properly formatted address
       const formattedAddress: string = ethers.utils.getAddress(address);
-      // Get tokens for address
-      const _tokenURI: string =
-        "ipfs://QmQjC6am2aGgC83Xy7nAXVYeQSr6JG3REECLp6AUZHAJDc";
-
-      // Generate hashed leaf from address
-      const leaf: Buffer = generateLeaf(formattedAddress);
-      // Generate airdrop proof
-      const proof: string[] = merkleTree.getHexProof(leaf);
-
-      // Try to claim airdrop and refresh sync status
-      try {
-        const tx = await token.claim(formattedAddress, _tokenURI, proof);
-        await tx.wait(1);
-        await syncStatus();
-      } catch (e) {
-        console.error(`Error when claiming certificate: ${e}`);
+      const tokenId: string | null = getAirdropId(formattedAddress);
+      if (!!tokenId){
+        // Get tokens for address
+        // Generate hashed leaf from address
+        const leaf: Buffer = generateLeaf(formattedAddress, tokenId);
+        // Generate airdrop proof
+        const proof: string[] = merkleTree.getHexProof(leaf);
+  
+        // Try to claim airdrop and refresh sync status
+        try {
+          const tx = await token.claim(formattedAddress, Number(tokenId), proof);
+          await tx.wait(1);
+          await syncStatus();
+        } catch (e) {
+          console.error(`Error when claiming certificate: ${e}`);
+        }
       }
-    }
+      }
   };
 
   /**
@@ -147,14 +153,14 @@ function useToken() {
 
     // Force authentication
     if (address) {
-      // Collect number of tokens for address
-      const tokens = getAirdropAmount(address);
-      setNumTokens(tokens);
+      // Collect tokenId for address
+      const tokenId = getAirdropId(address);
+      setTokenId(tokenId);
 
       // Collect claimed status for address, if part of airdrop (tokens > 0)
-      if (tokens > 0) {
+      if (tokenId) {
         const claimed = await getClaimedStatus(address);
-        setAlreadyClaimed(true);
+        setAlreadyClaimed(claimed);
       }
     }
 
@@ -170,7 +176,7 @@ function useToken() {
 
   return {
     dataLoading,
-    numTokens,
+    tokenId,
     alreadyClaimed,
     claimAirdrop,
   };

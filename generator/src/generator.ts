@@ -17,8 +17,12 @@ type AirdropRecipient = {
 };
 
 export default class Generator {
+  airdrop: Record<string, string> = {};
   // Airdrop recipients
   recipients: AirdropRecipient[] = [];
+
+  // Generate merkle tree
+  merkleTree: MerkleTree;
 
   /**
    * Setup generator
@@ -28,14 +32,27 @@ export default class Generator {
   constructor(decimals: number, airdrop: Record<string, number>) {
     // For each airdrop entry
     for (const [address, tokens] of Object.entries(airdrop)) {
-      // Push:
-      this.recipients.push({
+      // entry
+      const entry = {
         // Checksum address
-        address: getAddress(address),
+        address: address,
         // Scaled number of tokens claimable by recipient
         value: parseUnits(tokens.toString(), decimals).toString()
-      });
+      }
+      // Push:
+      this.recipients.push(entry);
+      this.airdrop[entry.address] = entry.value;
     }
+
+    this.merkleTree =  new MerkleTree(
+      // Generate leafs
+      this.recipients.map(({ address, value }) =>
+        this.generateLeaf(address, value)
+      ),
+      // Hashing function
+      keccak256,
+      { sortPairs: true }
+    );
   }
 
   /**
@@ -52,24 +69,15 @@ export default class Generator {
     );
   }
 
+
   async process(): Promise<void> {
     logger.info("Generating Merkle tree.");
 
-    // Generate merkle tree
-    const merkleTree = new MerkleTree(
-      // Generate leafs
-      this.recipients.map(({ address, value }) =>
-        this.generateLeaf(address, value)
-      ),
-      // Hashing function
-      keccak256,
-      { sortPairs: true }
-    );
 
     // Collect and log merkle root
-    const merkleRoot: string = merkleTree.getHexRoot();
+    const merkleRoot: string = this.merkleTree.getHexRoot();
     logger.info(`Generated Merkle root: ${merkleRoot}`);
-
+    
     // Collect and save merkle tree + root
     await fs.writeFileSync(
       // Output to merkle.json
@@ -77,9 +85,19 @@ export default class Generator {
       // Root + full tree
       JSON.stringify({
         root: merkleRoot,
-        tree: merkleTree
+        tree: this.merkleTree
       })
     );
     logger.info("Generated merkle tree and root saved to Merkle.json.");
+  }
+
+  getProof(address: string): string[] {
+    const value = this.airdrop[address];
+    const leaf = this.generateLeaf(address, value);
+    const proof = this.merkleTree.getHexProof(leaf);
+    console.log("Proof for ", address);
+    console.log(proof);
+    // console.log(this.merkleTree.verify(proof, leaf, "0x47e9b69fae42cb82b4cbb7d96c3c47f8714c7f47bd3d40ce0dd87456270abad2"))
+    return proof;
   }
 }

@@ -20,6 +20,9 @@ vim config.json
 # Run script
 npm run start
 
+# Get proof
+npm run start 0xA032...
+
 ```
 
 Outputs a `merkle.json`, in the following format:
